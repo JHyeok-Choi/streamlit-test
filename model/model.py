@@ -58,7 +58,6 @@ if uploaded_file is not None:
     mfccsscaled = np.mean(mfccs.T, axis=0)
     test_feature = np.array([mfccsscaled])
 
-    time = str(datetime.now().strftime('%H:%M:%S'))
     
     if test_feature is not None:
         predicted_proba_vactor = model.predict(test_feature)
