@@ -1,9 +1,7 @@
 import streamlit as st
 from datetime import datetime
-from dateutil import tz
+from dateutil.tz import gettz
 import os
-
-from requests import get
 
 import librosa
 import librosa.display
