@@ -1,8 +1,6 @@
 import streamlit as st
-
 from datetime import datetime
 import os
-from pathlib import Path
 
 from requests import get
 
