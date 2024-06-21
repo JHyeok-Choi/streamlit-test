@@ -13,9 +13,9 @@ from keras.models import load_model
 from requests import get
 
 
-def download(file_name):
+def download(url, file_name):
     with open(file_name, "wb") as file:
-        response = get('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true')
+        response = get(url)
         file.write(response.content)
 
 
@@ -37,9 +37,10 @@ clicked = st.button('Button 1')
 st.write('Button 1 Status: ', clicked)
 
 if clicked:
-    download("urban_sound_model.h5")
+    download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
     model = load_model('urban_sound_model.h5')
-    metadata = pd.read_csv('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urbansound8k/UrbanSound8K.csv?raw=true')
+    download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urbansound8k/UrbanSound8K.csv?raw=true', "UrbanSound8K.csv")
+    metadata = pd.read_csv("UrbanSound8K.csv")
     le = LabelEncoder()
     le.fit(metadata['class'])
     st.write('Button 1 was clicked')
