@@ -55,7 +55,7 @@ if uploaded_file is not None:
 
     dB = librosa.amplitude_to_db(S, ref=1e-05)
     dBm = str(int(np.mean(dB)))
-    st.write(dBm)
+    st.write(dBm, 'dB')
 
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40)
     mfccsscaled = np.mean(mfccs.T, axis=0)
