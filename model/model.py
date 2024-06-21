@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+from dateutil import tz
 import os
 
 from requests import get
@@ -58,10 +59,12 @@ if uploaded_file is not None:
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40)
     mfccsscaled = np.mean(mfccs.T, axis=0)
     test_feature = np.array([mfccsscaled])
+
+    time = str(datetime.now().strftime('%H:%M:%S'))
     
     if test_feature is not None:
         predicted_proba_vactor = model.predict(test_feature)
         predicted_class_index = np.argmax(predicted_proba_vactor)
         predicted_class_label = le.inverse_transform([predicted_class_index])[0]
         
-        st.write({"date": str(datetime.now().strftime('%H:%M:%S')), "label": predicted_class_label, "dB": dBm})
+        st.write({"date": str(datetime.now(gettz('Asia/Seoul')).strftime('%H:%M:%S')), "label": predicted_class_label, "dB": dBm})
