@@ -14,25 +14,17 @@ from sklearn.preprocessing import LabelEncoder
 from keras.models import load_model
 
 
-os_path = Path(__file__).parents[0] / "urban_sound_model.h5"
 
 def get_csv(csv_name):
     dir_name = os.path.abspath(os.path.dirname(__file__))
     location = os.path.join(dir_name, csv_name)
     return pd.read_csv(location)
 
+
 def get_model(model_name):
     dir_name = os.path.abspath(os.path.dirname(__file__))
     location = os.path.join(dir_name, model_name)
     return load_model(location)
-
-model = get_model("urban_sound_model.h5")
-# metadata = pd.read_csv("UrbanSound8K.csv")
-metadata = get_csv("UrbanSound8K.csv")
-le = LabelEncoder()
-le.fit(metadata['class'])
-
-
 
 
 def extract_feature(file_name):
@@ -43,6 +35,11 @@ def extract_feature(file_name):
 
     return np.array([mfccsscaled])
 
+
+model = get_model("urban_sound_model.h5")
+metadata = get_csv("UrbanSound8K.csv")
+le = LabelEncoder()
+le.fit(metadata['class'])
 
 
 
