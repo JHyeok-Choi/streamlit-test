@@ -16,7 +16,7 @@ import requests as rq
 def download(url, file_name):
     with open(file_name, "wb") as file:
         response = rq.get(url)
-        file.write(rq.content)
+        file.write(response.content)
 
 download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
 
