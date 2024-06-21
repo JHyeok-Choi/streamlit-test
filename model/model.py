@@ -2,6 +2,9 @@ import streamlit as st
 
 from datetime import datetime
 import os
+from pathlib import Path
+
+from requests import get
 
 import librosa
 import librosa.display
@@ -10,7 +13,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder 
 from keras.models import load_model
 
-from requests import get
+
 
 os_path = Path(__file__).parents[0] / "urban_sound_model.h5"
 
