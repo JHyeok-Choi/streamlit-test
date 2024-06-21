@@ -14,18 +14,19 @@ from sklearn.preprocessing import LabelEncoder
 from keras.models import load_model
 
 
-
 os_path = Path(__file__).parents[0] / "urban_sound_model.h5"
 
 def get_csv(csv_name):
-    path = Path(__file__).parents[0] / csv_name
-    return pd.read_csv(open(path, 'rb'), sheet_name=csv_name)
+    dir_path = os.path.abspath(os.path.dirname(__file__))
+    location = os.path.join(dir_name, csv_name)
+    return pd.read_csv(location)
 
 def get_model(model_name):
-    path = Path(__file__).parents[0] / model_name
-    return load_model(open(path, 'rb'))
+    dir_path = os.path.abspath(os.path.dirname(__file__))
+    location = os.path.join(dir_name, model_name)
+    return load_model(location)
 
-model = get_model('urban_sound_model.h5')
+model = get_model("urban_sound_model.h5")
 # metadata = pd.read_csv("UrbanSound8K.csv")
 metadata = get_csv("UrbanSound8K.csv")
 le = LabelEncoder()
