@@ -12,11 +12,22 @@ from keras.models import load_model
 
 from requests import get
 
+os_path = Path(__file__).parents[0] / "urban_sound_model.h5"
 
-def download(url, file_name):
-    with open(file_name, "wb") as file:
-        response = get(url)
-        file.write(response.content)
+def get_csv(csv_name):
+    path = Path(__file__).parents[0] / csv_name
+    return pd.read_csv(open(path, 'rb'), sheet_name=csv_name)
+
+def get_model(model_name):
+    path = Path(__file__).parents[0] / model_name
+    return load_model(open(path, 'rb'))
+
+model = get_model('urban_sound_model.h5')
+# metadata = pd.read_csv("UrbanSound8K.csv")
+metadata = get_csv("UrbanSound8K.csv")
+le = LabelEncoder()
+le.fit(metadata['class'])
+
 
 
 
@@ -32,20 +43,6 @@ def extract_feature(file_name):
 
 
 st.title("오디오 검출 테스트!")
-
-clicked = st.button('Button 1')
-st.write('Button 1 Status: ', clicked)
-
-if clicked:
-    download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
-    model = load_model('urban_sound_model.h5')
-    download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urbansound8k/UrbanSound8K.csv?raw=true', "UrbanSound8K.csv")
-    metadata = pd.read_csv("UrbanSound8K.csv")
-    le = LabelEncoder()
-    le.fit(metadata['class'])
-    st.write('Button 1 was clicked')
-else:
-    st.write('Button 1 was not clicked')
 
 uploaded_file = st.file_uploader("wav 파일을 선택하세요.", type="wav")
 if uploaded_file is not None:
