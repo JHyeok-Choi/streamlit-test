@@ -17,12 +17,12 @@ from keras.models import load_model
 os_path = Path(__file__).parents[0] / "urban_sound_model.h5"
 
 def get_csv(csv_name):
-    dir_path = os.path.abspath(os.path.dirname(__file__))
+    dir_name = os.path.abspath(os.path.dirname(__file__))
     location = os.path.join(dir_name, csv_name)
     return pd.read_csv(location)
 
 def get_model(model_name):
-    dir_path = os.path.abspath(os.path.dirname(__file__))
+    dir_name = os.path.abspath(os.path.dirname(__file__))
     location = os.path.join(dir_name, model_name)
     return load_model(location)
 
