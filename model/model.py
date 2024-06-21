@@ -11,7 +11,7 @@ from sklearn.preprocessing import LabelEncoder
 from keras.models import load_model
 
 
-model = load_model('urban_sound_model.h5')
+model = load_model(file: 'https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true')
 
 def extract_feature(file_name):
 
