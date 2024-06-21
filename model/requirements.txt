@@ -1,6 +1,6 @@
-streamlit
-librosa
-numpy
-pandas
-sklearn
-keras
+streamlit==1.35.0
+librosa==0.10.2.post1
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.5.0
+keras==3.3.3
