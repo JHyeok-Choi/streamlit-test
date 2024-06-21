@@ -29,9 +29,6 @@ def extract_feature(file_name):
     return np.array([mfccsscaled])
 
 
-metadata = pd.read_csv('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urbansound8k/UrbanSound8K.csv?raw=true')
-le = LabelEncoder()
-le.fit(metadata['class'])
 
 
 st.title("오디오 검출 테스트!")
@@ -42,6 +39,9 @@ st.write('Button 1 Status: ', clicked)
 if clicked:
     download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
     model = load_model('urban_sound_model.h5')
+    metadata = pd.read_csv('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urbansound8k/UrbanSound8K.csv?raw=true')
+    le = LabelEncoder()
+    le.fit(metadata['class'])
     st.write('Button 1 was clicked')
 else:
     st.write('Button 1 was not clicked')
