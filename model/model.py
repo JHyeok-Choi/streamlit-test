@@ -17,10 +17,8 @@ def download(url, file_name):
     with open(file_name, "wb") as file:
         response = get(url)
         file.write(response.content)
-if __name__ == '__main__':
-    download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
 
-model = load_model('urban_sound_model.h5')
+
 
 def extract_feature(file_name):
 
@@ -40,6 +38,8 @@ st.title("오디오 검출 테스트!")
 
 uploaded_file = st.file_uploader("wav 파일을 선택하세요.", type="wav")
 if uploaded_file is not None:
+    download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
+    model = load_model('urban_sound_model.h5')
     bytes_data = uploaded_file.getvalue()
     st.write(bytes_data[:100])
 
