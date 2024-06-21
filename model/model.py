@@ -36,10 +36,18 @@ le.fit(metadata['class'])
 
 st.title("오디오 검출 테스트!")
 
-uploaded_file = st.file_uploader("wav 파일을 선택하세요.", type="wav")
-if uploaded_file is not None:
+clicked = st.button('Button 1')
+st.write('Button 1 Status: ', clicked)
+
+if clicked:
     download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
     model = load_model('urban_sound_model.h5')
+    st.write('Button 1 was clicked')
+else:
+    st.write('Button 1 was not clicked')
+
+uploaded_file = st.file_uploader("wav 파일을 선택하세요.", type="wav")
+if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     st.write(bytes_data[:100])
 
