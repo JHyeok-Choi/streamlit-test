@@ -10,15 +10,15 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder 
 from keras.models import load_model
 
-import requests as rq
+from requests import get
 
 
 def download(url, file_name):
     with open(file_name, "wb") as file:
-        response = rq.get(url)
+        response = get(url)
         file.write(response.content)
-
-download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
+if __name__ == '__main__':
+    download('https://github.com/JHyeok-Choi/streamlit-test/blob/main/model/data/urban_sound_model.h5?raw=true', "urban_sound_model.h5")
 
 model = load_model('urban_sound_model.h5')
 
